@@ -1,0 +1,4 @@
+image: proboci/ubuntu-14.04-lamp:php-7.0
+steps:
+  - name: Test step
+  - command: 'echo "<h1>Test header</h1> https://google.com"'
