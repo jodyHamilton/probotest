@@ -10,10 +10,11 @@ steps:
   - name: Run Lighthouse audits
     plugin: Script
     script: |
-      lighthouse https://zivtech.com --chrome-flags="--no-sandbox=true --disable-setuid-sandbox --headless" --output json --output html --output-path=/var/www/lighthouse-results.json
+      mkdir /var/www/html
+      lighthouse https://zivtech.com --chrome-flags="--no-sandbox=true --disable-setuid-sandbox --headless" --output json --output html --output-path=/var/www/html/lighthouse-results.json
       apt-get install jq
       output='<table>'
-      for row in $(cat /var/www/lighthouse-results.report.json | jq -r '.categories[] | {title: .title, score: .score} | @base64'); do
+      for row in $(cat /var/www/html/lighthouse-results.report.json | jq -r '.categories[] | {title: .title, score: .score} | @base64'); do
         _jq() {
           echo ${row} | base64 --decode | jq -r ${1}
         }
