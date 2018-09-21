@@ -21,9 +21,6 @@ steps:
       done
       output="$output </table>"
       echo "$output" > lighthouse.html
-  - name: Test step!
-    plugin: Output
-    output: '<h1>Test header</h1> <a href="https://google.com">Google</a>'
   - name: Display Lighthouse results
     plugin: Output
-    output: "$(</src/lighthouse.html)"
+    output: "<h2> Lighthouse Results</h2> $(</src/lighthouse.html)"
