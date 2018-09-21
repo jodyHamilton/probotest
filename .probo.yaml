@@ -18,7 +18,7 @@ steps:
         _jq() {
           echo ${row} | base64 --decode | jq -r ${1}
         }
-        output="$output <tr><td> $(_jq '.title') </td><td> $(_jq '.score') \* 100</td></tr>"
+        output="$output <tr><td> $(_jq '.title') </td><td> $(_jq '.score' \* 100)</td></tr>"
       done
       output="$output </table>"
       echo "$output" > lighthouse.html
