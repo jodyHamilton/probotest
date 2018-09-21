@@ -11,13 +11,9 @@ steps:
     plugin: Script
     script: 
       - lighthouse https://zivtech.com --chrome-flags="--no-sandbox=true --disable-setuid-sandbox --headless" --output-path=./lighthouse-results.html
-      - output=$(<./lighthouse-results.html)
-      - echo $output
   - name: Test step!
     plugin: Output
     output: '<h1>Test header</h1> <a href="https://google.com">Google</a>'
-  - name: Echo lighthouse results
-    command: 'echo $output'
   - name: Display Lighthouse results
     plugin: Output
-    output: "$output"
+    output: "$(<./lighthouse-results.html)"
