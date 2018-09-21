@@ -2,4 +2,4 @@ image: proboci/ubuntu-14.04-lamp:php-7.0
 steps:
   - name: Test step!
     plugin: Output
-    command: '<h1>Test header</h1> <a href="https://google.com">Google</a>'
+    output: '<h1>Test header</h1> <a href="https://google.com">Google</a>'
