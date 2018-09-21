@@ -11,9 +11,19 @@ steps:
     plugin: Script
     script: 
       - lighthouse https://zivtech.com --chrome-flags="--no-sandbox=true --disable-setuid-sandbox --headless" --output json --output-path=./lighthouse-results.json
+      - apt-get install jq
+      - output='<table>'
+      - for row in $(cat ./lighthouse-results.json | jq -r '.categories[] | {title: .title, score: .score} | @base64'); do
+          _jq() {
+            echo ${row} | base64 --decode | jq -r ${1}
+          }
+          output="$output <tr><td> $(_jq '.title') </td><td> $(_jq '.score') </td></tr>"
+        done
+      - output="$output </table>"
+      - echo "$output" > lighthouse.html
   - name: Test step!
     plugin: Output
     output: '<h1>Test header</h1> <a href="https://google.com">Google</a>'
   - name: Display Lighthouse results
     plugin: Output
-    output: "$(</src/lighthouse-results.json)"
+    output: "$(</src/lighthouse.html)"
