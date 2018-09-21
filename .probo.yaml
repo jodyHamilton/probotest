@@ -16,4 +16,4 @@ steps:
     output: '<h1>Test header</h1> <a href="https://google.com">Google</a>'
   - name: Display Lighthouse results
     plugin: Output
-    output: "$(<./lighthouse-results.html)"
+    output: "$(</src/lighthouse-results.html)"
