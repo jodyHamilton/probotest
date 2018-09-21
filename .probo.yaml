@@ -3,7 +3,7 @@ steps:
   - name: Install lighthouse
     command: 'npm cache clean -f && npm install -g n && n stable && npm install -g lighthouse'
   - name: Run Lighthouse audits
-    command: 'cd /var/www/html && lighthouse https://zivtech.com --chrome-flags="--no-sandbox=true --disable-setuid-sandbox --headless" --output-path=./lighthouse-results.html && output=$(<./lighthouse-results.html)'
+    command: 'lighthouse https://zivtech.com --chrome-flags="--no-sandbox=true --disable-setuid-sandbox --headless" --output-path=./lighthouse-results.html && output=$(<./lighthouse-results.html)'
   - name: Test step!
     plugin: Output
     output: '<h1>Test header</h1> <a href="https://google.com">Google</a>'
