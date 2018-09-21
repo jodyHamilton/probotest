@@ -10,17 +10,17 @@ steps:
   - name: Run Lighthouse audits
     plugin: Script
     script: |
-      lighthouse https://zivtech.com --chrome-flags="--no-sandbox=true --disable-setuid-sandbox --headless" --output json --output-path=./lighthouse-results.json
+      lighthouse https://zivtech.com --chrome-flags="--no-sandbox=true --disable-setuid-sandbox --headless" --output json --output html --output-path=/var/www/lighthouse-results.json
       apt-get install jq
       output='<table>'
-      for row in $(cat ./lighthouse-results.json | jq -r '.categories[] | {title: .title, score: .score} | @base64'); do
+      for row in $(cat /var/www/lighthouse-results.json | jq -r '.categories[] | {title: .title, score: .score} | @base64'); do
         _jq() {
           echo ${row} | base64 --decode | jq -r ${1}
         }
-        output="$output <tr><td> $(_jq '.title') </td><td> $(_jq '.score') </td></tr>"
+        output="$output <tr><td> $(_jq '.title') </td><td> $(_jq '.score') \* 100</td></tr>"
       done
       output="$output </table>"
       echo "$output" > lighthouse.html
   - name: Display Lighthouse results
     plugin: Output
-    output: "<h2> Lighthouse Results</h2> $(</src/lighthouse.html)"
+    output: "<h2> Lighthouse Results</h2> $(</src/lighthouse.html) <a href='$BUILD_DOMAIN/lighthouse-results.html'>View Full Report</a>"
