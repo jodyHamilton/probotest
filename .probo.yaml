@@ -1,4 +1,27 @@
 image: proboci/ubuntu-14.04-lamp:php-7.0
 steps:
-  - name: Test step
-  - command: 'echo "<h1>Test header</h1> https://google.com"'
+  - name: Install lighthouse
+    plugin: Script
+    script: 
+      - npm cache clean -f
+      - npm install -g n
+      - n stable
+      - npm install -g lighthouse
+  - name: Run Lighthouse audits
+    plugin: Script
+    script: |
+      mkdir /var/www/html
+      lighthouse https://zivtech.com --chrome-flags="--no-sandbox=true --disable-setuid-sandbox --headless" --output json --output html --output-path=/var/www/html/lighthouse-results.json
+      apt-get install jq
+      output='<table>'
+      for row in $(cat /var/www/html/lighthouse-results.report.json | jq -r '.categories[] | {title: .title, score: .score} | @base64'); do
+        _jq() {
+          echo ${row} | base64 --decode | jq -r ${1}
+        }
+        output="$output <tr><td> $(_jq '.title') </td><td> $(_jq '.score' \* 100)</td></tr>"
+      done
+      output="$output </table>"
+      echo "$output" > lighthouse.html
+  - name: Display Lighthouse results
+    plugin: Output
+    output: "<h2> Lighthouse Results</h2> $(</src/lighthouse.html) <a href='$BUILD_DOMAIN/lighthouse-results.report.html'>View Full Report</a>"
