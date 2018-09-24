@@ -4,4 +4,7 @@ steps:
     command: 'ln -s $SRC_DIR  /var/www/html'
   - name: run lighthouse!
     plugin: Lighthouse
+    categories:
+      - seo: 32
+      - performance: 87
   
