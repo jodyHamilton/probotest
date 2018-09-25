@@ -2,11 +2,8 @@ image: proboci/ubuntu-14.04-lamp:php-7.0
 steps:
   - name: symlink maker.
     command: 'ln -s $SRC_DIR  /var/www/html'
-  - name: ansi test
-    command: echo "\n\n\x1B[1;33;40m 33;40  \x1B[1;33;41m 33;41  \x1B[1;33;42m 33;42  \x1B[1;33;43m 33;43  \x1B[1;33;44m 33;44  \x1B[1;33;45m 33;45  \x1B[1;33;46m 33;46  \x1B[1m\x1B[0\n\n\x1B[1;30;42m >> Tests OK\n\n"
-  - name: run lighthouse!
     plugin: Lighthouse
     categories:
-      - seo: 64
       - performance: 87
+      - seo: 64
   
