@@ -7,4 +7,6 @@ steps:
     categories:
       - performance: 87
       - seo: 64
+    lighthouseOptions:
+      - preset: 'perf'
   
