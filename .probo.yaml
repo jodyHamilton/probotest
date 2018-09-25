@@ -2,6 +2,7 @@ image: proboci/ubuntu-14.04-lamp:php-7.0
 steps:
   - name: symlink maker.
     command: 'ln -s $SRC_DIR  /var/www/html'
+  - name: Lighthouse
     plugin: Lighthouse
     categories:
       - performance: 87
