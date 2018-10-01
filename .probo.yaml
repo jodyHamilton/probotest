@@ -6,3 +6,4 @@ steps:
     plugin: Jira
     jiraUrl: 'https://jira.zivtech.com'
     jiraName: 'jody'
+    comment: 'PROBO SAYS: Review code at $PULL_REQUEST_LINK and view build at $BUILD_DOMAIN.'
