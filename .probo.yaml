@@ -1,4 +1,6 @@
 image: proboci/ubuntu-14.04-lamp:php-7.0
+assets:
+  - jira-credentials.sh
 steps:
   - name: send jira comment
     plugin: Jira
