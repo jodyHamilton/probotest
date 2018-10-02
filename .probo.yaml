@@ -1,6 +1,6 @@
 image: proboci/ubuntu-14.04-lamp:php-7.0
 steps:
   - name: Test step
-    command: 'for (i in {1..20}); do echo $i; sleep 5s; done;'
+    command: 'for i in {1..20}; do echo $i; sleep 5s; done;'
   - name: Test step TWO
-    command: 'for (i in {1..20}); do echo $i; sleep 5s; done;'
+    command: 'for i in {1..20}; do echo $i; sleep 5s; done;'
