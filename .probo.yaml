@@ -6,3 +6,5 @@ steps:
     command: 'for i in {1..20}; do echo $i; sleep 1s; done;'
   - name: Test step three
     command: 'for i in {1..20}; do echo $i; sleep 1s; done;'
+  - name: Test step four
+    command: 'for i in {1..20}; do echo $i; sleep 1s; done;'
