@@ -3,5 +3,5 @@ assets:
   - prod-hs-iasedudb77526-2018-09-21.sql
 steps:
   - name: test lampapp
-    plugin: WordpressApp
+    plugin: WordPressApp
     database: prod-hs-iasedudb77526-2018-09-21.sql
