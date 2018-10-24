@@ -1,4 +1,7 @@
 image: proboci/ubuntu-14.04-lamp:php-7.0
+assets:
+  - prod-hs-iasedudb77526-2018-09-21.sql
 steps:
   - name: test lampapp
     plugin: LAMPApp
+    database: prod-hs-iasedudb77526-2018-09-21.sql
