@@ -4,7 +4,7 @@ assets:
   - credentials.sh
 steps:
   - name: test lampapp
-    plugin: LAMPApp
+    plugin: Drupal
     database: prod-hs-iasedudb77526-2018-09-21.sql
     databaseName: foo
     databaseUser: bar
