@@ -1,4 +1,9 @@
 image: proboci/ubuntu-14.04-lamp:php-7.0
+assets:
+  - jira-credentials.sh
 steps:
-  - name: Test step
-  - command: 'echo "<h1>Test header</h1> https://google.com"'
+  - name: send jira comment
+    plugin: Jira
+    jiraUrl: 'https://jira.zivtech.com'
+    jiraName: 'jody'
+    comment: 'PROBO SAYS: Review code at $PULL_REQUEST_LINK and view build at $BUILD_DOMAIN.'
